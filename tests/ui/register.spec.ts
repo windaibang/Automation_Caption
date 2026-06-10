@@ -752,3 +752,55 @@ test("Register with empty email", async ({ page, registerPage, homePage }) => {
   await expect(lblaccount).toBeVisible();
 });
 
+// ===== TEST ĐĂNG KÍ VỚI SỐ ĐIỆN THOẠI KHÔNG HỢP LỆ =====
+test("Register with invalid phone number", async ({ page, registerPage, homePage }) => {
+  const fullName = "Huỳnh Lê Việt Anh";
+  const password = "Daibangvip123@";
+  const account = crypto.randomUUID().substring(0, 15);
+  const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
+  const phone = "invalidphone"; // invalid phone number
+  
+  await page.goto("https://demo2.cybersoft.edu.vn");
+
+  await homePage.getNavbarComponent().navigateToLogin();
+
+  await registerPage.navigateToRegisterForm();
+
+  await registerPage.enterAccount(account);
+
+  await registerPage.enterFullName(fullName);
+  await registerPage.enterPassword(password);
+  
+  await registerPage.enterEmail(email);
+  await registerPage.enterPhone(phone);
+  await registerPage.selectGroupForm('GP03');
+  
+  await registerPage.clickRegister();
+
+});
+// ===== TEST ĐĂNG KÍ VỚI SỐ ĐIỆN THOẠI KHÔNG ĐỦ SỐ =====
+test("Register with phone number less than 10 digits", async ({ page, registerPage, homePage }) => {
+  const fullName = "Huỳnh Lê Việt Anh";
+  const password = "Daibangvip123@";
+  const account = crypto.randomUUID().substring(0, 15);
+  const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
+  const phone = "034567890"; // phone number with less than 10 digits
+  
+  await page.goto("https://demo2.cybersoft.edu.vn");
+
+  await homePage.getNavbarComponent().navigateToLogin();
+
+  await registerPage.navigateToRegisterForm();
+
+  await registerPage.enterAccount(account);
+
+  await registerPage.enterFullName(fullName);
+  await registerPage.enterPassword(password);
+  
+  await registerPage.enterEmail(email);
+  await registerPage.enterPhone(phone);
+  await registerPage.selectGroupForm('GP03');
+  
+  await registerPage.clickRegister();
+
+});
