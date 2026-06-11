@@ -4,12 +4,12 @@ import { TimeOutConstants } from "../../constants/TimeOutConstants.ts";
 
 export class NavbarComponent extends BasePage {
   private loginLink: Locator;
-  private IconLogo: Locator;
+  private BlogBtn: Locator;
 
   constructor(page: Page) {
     super(page);
     this.loginLink = page.getByRole('link', { name: 'Đăng nhập' });
-    this.IconLogo = page.getByRole('img', { name: 'Logo' });
+    this.BlogBtn = page.getByRole('link', { name: 'Blog' });;
   }
 
   //phương thức: các hành động trên thanh điều hướng
@@ -19,7 +19,7 @@ export class NavbarComponent extends BasePage {
     await this.click(this.loginLink, timeOut);
   }
 
-  async clickIconLogo(timeOut: number = TimeOutConstants.TIME_OUT_DEFAULT) {
-    await this.click(this.IconLogo, timeOut);
+  async clickBlogBtn(timeOut: number = TimeOutConstants.TIME_OUT_DEFAULT) {
+    await this.click(this.BlogBtn, timeOut);
   }
 }

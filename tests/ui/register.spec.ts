@@ -7,30 +7,15 @@ test("Register test", async ({ page, homePage, registerPage }) => {
   const fullName = "Huỳnh Lê Việt Anh"; // full name
 
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
-
-    // Click "Đăng ký" button
-    homePage.getNavbarComponent().navigateToLogin();
-    
-    // Click "Đăng ký" button
-    await registerPage.navigateToRegisterForm();
-    
-    // nhập thông tin đăng ký
+    homePage.getNavbarComponent().navigateToLogin();  
+    await registerPage.navigateToRegisterForm();   
     await registerPage.enterAccount(account);
-
     await registerPage.enterFullName(fullName);
-
     await registerPage.enterPassword(password);
-    
     await registerPage.enterEmail(`${account}@gmail.com`);    
-
     await registerPage.enterPhone("0345678901");
-
     await registerPage.selectGroupForm('GP03');
-
-    // Click "Đăng ký" button
     await page.locator('form').filter({ hasText: 'ĐĂNG KÝGP01GP02GP03GP04GP05GP06GP07GP08GP09GP010Đăng ký' }).getByRole('button').click();
-
-    // Kiểm tra đăng ký thành công
     const errorMsg = await page.getByText('Đăng kí thành công');
     await expect(errorMsg).toBeVisible();
 
@@ -42,23 +27,15 @@ test("Register fails when account field more 16 characters", async ({ page, regi
   const password = "Daibangvip123@";
   const account = crypto.randomUUID().substring(0, 15);
   const phone = "0345678901";
-  
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
-
   await homePage.getNavbarComponent().navigateToLogin();
-
   await registerPage.navigateToRegisterForm();
-
   await registerPage.enterAccount('aaaaaaaaaaaaaaaaaaaaaaaaaa');
-
   await registerPage.enterFullName(fullName);
-  await page.locator('form').filter({ hasText: 'ĐĂNG KÝTài khoản quá 16 kí tự' }).getByPlaceholder('Mật khẩu').fill(password);
-  
+  await page.locator('form').filter({ hasText: 'ĐĂNG KÝTài khoản quá 16 kí tự' }).getByPlaceholder('Mật khẩu').fill(password); 
   await registerPage.enterEmail(`${account}@gmail.com`); 
   await registerPage.enterPhone(phone);
-  await registerPage.selectGroupForm('GP03');
-  
-  
+  await registerPage.selectGroupForm('GP03');  
   await page.locator('form').filter({ hasText: 'ĐĂNG KÝTài khoản quá 16 kí tự' }).getByRole('button').click();
 });
 
@@ -68,26 +45,16 @@ test("Register fails when account is to short", async ({ page, registerPage, hom
   const password = "Daibangvip123@";
   const account = crypto.randomUUID().substring(0, 15);
   const phone = "0345678901";
-  
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
-
   await homePage.getNavbarComponent().navigateToLogin();
-
   await registerPage.navigateToRegisterForm();
-
   await registerPage.enterAccount('a');
-
   await registerPage.enterFullName(fullName);
-  await page.locator('form').filter({ hasText: 'ĐĂNG KÝTài khoản quá ít kí tự' }).getByPlaceholder('Mật khẩu').fill(password);
-  
-  
+  await page.locator('form').filter({ hasText: 'ĐĂNG KÝTài khoản quá ít kí tự' }).getByPlaceholder('Mật khẩu').fill(password);  
   await registerPage.enterEmail(`${account}@gmail.com`);
   await registerPage.enterPhone(phone);
-  await registerPage.selectGroupForm('GP03');
-  
-  
+  await registerPage.selectGroupForm('GP03');  
   await page.locator('form').filter({ hasText: 'ĐĂNG KÝTài khoản quá ít kí tự' }).getByRole('button').click();
-
   const redlabel= await page.getByText('Tài khoản quá ít kí tự');
   await expect(redlabel).toBeVisible();
 });
@@ -97,26 +64,17 @@ test("Register fails with empty account", async ({ page, registerPage, homePage 
   const fullName = "Huỳnh Lê Việt Anh";
   const password = "Daibangvip123@";
   const account = crypto.randomUUID().substring(0, 15);
-  const phone = "0345678901";
-  
+  const phone = "0345678901";  
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
-
   await homePage.getNavbarComponent().navigateToLogin();
-
   await registerPage.navigateToRegisterForm();
-
   await registerPage.enterAccount('');
-
   await registerPage.enterFullName(fullName);
-  await page.locator('form').filter({ hasText: 'ĐĂNG KÝTài khoản không được' }).getByPlaceholder('Mật khẩu').fill(password);
-  
+  await page.locator('form').filter({ hasText: 'ĐĂNG KÝTài khoản không được' }).getByPlaceholder('Mật khẩu').fill(password); 
   await registerPage.enterEmail(`${account}@gmail.com`);
   await registerPage.enterPhone(phone);
-  await registerPage.selectGroupForm('GP03');
-  
-  
+  await registerPage.selectGroupForm('GP03'); 
   await page.locator('form').filter({ hasText: 'ĐĂNG KÝTài khoản không được' }).getByRole('button').click();
-
   const lblaccount = await page.getByText('Tài khoản không được để trống');
   await expect(lblaccount).toBeVisible();
 });
@@ -127,25 +85,17 @@ test("Register with special characters in account", async ({ page, registerPage,
   const password = "Daibangvip123@";
   const account = crypto.randomUUID().substring(0, 5) + "!@#$()"; // account with special characters
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
-  const phone = "0345678901";
-  
+  const phone = "0345678901"; 
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
-
   await homePage.getNavbarComponent().navigateToLogin();
-
   await registerPage.navigateToRegisterForm();
-
   await registerPage.enterAccount(account);
-
   await registerPage.enterFullName(fullName);
   await registerPage.enterPassword(password);
-  
   await registerPage.enterEmail(email);
   await registerPage.enterPhone(phone);
-  await registerPage.selectGroupForm('GP03');
-  
+  await registerPage.selectGroupForm('GP03'); 
   await registerPage.clickRegister();
-
   const lblaccount = await page.getByText('Đăng kí thành công');
   await expect(lblaccount).toBeVisible();
 });
@@ -156,25 +106,17 @@ test("Register with account contains only numbers", async ({ page, registerPage,
   const password = "Daibangvip123@";
   const account = "1234567890"; // account with only numbers
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
-  const phone = "0345678901";
-  
+  const phone = "0345678901";  
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
-
   await homePage.getNavbarComponent().navigateToLogin();
-
   await registerPage.navigateToRegisterForm();
-
   await registerPage.enterAccount(account);
-
   await registerPage.enterFullName(fullName);
-  await registerPage.enterPassword(password);
-  
+  await registerPage.enterPassword(password); 
   await registerPage.enterEmail(email);
   await registerPage.enterPhone(phone);
-  await registerPage.selectGroupForm('GP03');
-  
+  await registerPage.selectGroupForm('GP03'); 
   await registerPage.clickRegister();
-
   const lblaccount = await page.getByText('Đăng kí thành công');
   await expect(lblaccount).toBeVisible();
 });
@@ -184,25 +126,17 @@ test("Register with existing account", async ({ page, registerPage, homePage }) 
   const password = "Daibangvip123@";
   const account = "vietanh1122";
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
-  const phone = "0345678901";
-  
+  const phone = "0345678901";  
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
-
   await homePage.getNavbarComponent().navigateToLogin();
-
   await registerPage.navigateToRegisterForm();
-
   await registerPage.enterAccount(account);
-
   await registerPage.enterFullName(fullName);
-  await registerPage.enterPassword(password);
-  
+  await registerPage.enterPassword(password);  
   await registerPage.enterEmail(email);
   await registerPage.enterPhone(phone);
-  await registerPage.selectGroupForm('GP03');
-  
+  await registerPage.selectGroupForm('GP03');  
   await registerPage.clickRegister();
-
   const lblaccount = await page.getByText('Tài khoản đã tồn tại');
   await expect(lblaccount).toBeVisible();
 });
@@ -213,25 +147,17 @@ test("Register with account contains whitespace", async ({ page, registerPage, h
   const password = "Daibangvip123@";
   const account = "viet anh"; // account with whitespace
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
-  const phone = "0345678901";
-  
+  const phone = "0345678901"; 
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
-
   await homePage.getNavbarComponent().navigateToLogin();
-
   await registerPage.navigateToRegisterForm();
-
   await registerPage.enterAccount(account);
-
   await registerPage.enterFullName(fullName);
-  await registerPage.enterPassword(password);
-  
+  await registerPage.enterPassword(password); 
   await registerPage.enterEmail(email);
   await registerPage.enterPhone(phone);
-  await registerPage.selectGroupForm('GP03');
-  
+  await registerPage.selectGroupForm('GP03');  
   await registerPage.clickRegister();
-
   const lblaccount = await page.getByText('Đăng kí thành công');
   await expect(lblaccount).toBeVisible();
 });
@@ -242,25 +168,17 @@ test("Register with full name more than 50 characters", async ({ page, registerP
   const password = "Daibangvip123@";
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
-  const phone = "0345678901";
-  
+  const phone = "0345678901"; 
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
-
   await homePage.getNavbarComponent().navigateToLogin();
-
   await registerPage.navigateToRegisterForm();
-
   await registerPage.enterAccount(account);
-
   await registerPage.enterFullName(fullName);
-  await registerPage.enterPassword(password);
-  
+  await registerPage.enterPassword(password);  
   await registerPage.enterEmail(email);
   await registerPage.enterPhone(phone);
-  await registerPage.selectGroupForm('GP03');
-  
+  await registerPage.selectGroupForm('GP03');  
   await registerPage.clickRegister();
-
   const lblaccount = await page.getByText('Đăng kí thành công');
   await expect(lblaccount).toBeVisible();
 });
@@ -271,25 +189,17 @@ test("Register with full name contains only numbers", async ({ page, registerPag
   const password = "Daibangvip123@";
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
-  const phone = "0345678901";
-  
+  const phone = "0345678901";  
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
-
   await homePage.getNavbarComponent().navigateToLogin();
-
   await registerPage.navigateToRegisterForm();
-
   await registerPage.enterAccount(account);
-
   await registerPage.enterFullName(fullName);
-  await registerPage.enterPassword(password);
-  
+  await registerPage.enterPassword(password);  
   await registerPage.enterEmail(email);
   await registerPage.enterPhone(phone);
-  await registerPage.selectGroupForm('GP03');
-  
+  await registerPage.selectGroupForm('GP03');  
   await registerPage.clickRegister();
-
   const lblaccount = await page.getByText('Chỉ nhập kí tự chữ');
   await expect(lblaccount).toBeVisible();
 });
@@ -609,25 +519,17 @@ test("Register with empty email", async ({ page, registerPage, homePage }) => {
   const password = "Daibangvip123@";
   const account = crypto.randomUUID().substring(0, 15);
   const email = ""; // empty email
-  const phone = "0345678901";
-  
+  const phone = "0345678901";  
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
-
   await homePage.getNavbarComponent().navigateToLogin();
-
   await registerPage.navigateToRegisterForm();
-
   await registerPage.enterAccount(account);
-
   await registerPage.enterFullName(fullName);
-  await registerPage.enterPassword(password);
-  
+  await registerPage.enterPassword(password); 
   await registerPage.enterEmail(email);
   await registerPage.enterPhone(phone);
-  await registerPage.selectGroupForm('GP03');
-  
+  await registerPage.selectGroupForm('GP03');  
   await registerPage.clickRegister();
-
   const lblaccount = await page.getByText('Email không được để trống');
   await expect(lblaccount).toBeVisible();
 });
@@ -638,23 +540,16 @@ test("Register with invalid phone number", async ({ page, registerPage, homePage
   const password = "Daibangvip123@";
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
-  const phone = "invalidphone"; // invalid phone number
-  
+  const phone = "invalidphone"; // invalid phone number  
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
-
   await homePage.getNavbarComponent().navigateToLogin();
-
   await registerPage.navigateToRegisterForm();
-
   await registerPage.enterAccount(account);
-
   await registerPage.enterFullName(fullName);
   await registerPage.enterPassword(password);
-  
   await registerPage.enterEmail(email);
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP03');
-  
   await registerPage.clickRegister();
 
 });

@@ -4,10 +4,12 @@ import { test as base } from "@playwright/test";
 import { HomePage } from "../pages/HomePage.ts";
 import { RegisterPage } from "../pages/RegisterPage.ts";
 import { LoginPage } from "../pages/LoginPage.ts";
+import { BlogPage } from "../pages/BlogPage.ts";
 type PageFixture = {
   homePage: HomePage;
   registerPage: RegisterPage;
   loginPage: LoginPage;
+  blogPage: BlogPage;
 };
 
 export const test = base.extend<PageFixture>({
@@ -25,6 +27,11 @@ export const test = base.extend<PageFixture>({
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
     await use(loginPage);
+  },
+
+  blogPage: async ({ page }, use) => {
+    const blogPage = new BlogPage(page);
+    await use(blogPage);
   },
 });
 
