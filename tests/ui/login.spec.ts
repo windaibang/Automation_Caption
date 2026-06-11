@@ -5,8 +5,8 @@ test("Login test", async ({ page, homePage, loginPage }) => {
   const account = "vietanh1122"; // account name
   const password = "Daibangvip123@"; // password
 
-  await page.goto("https://demo2.cybersoft.edu.vn/");
-  homePage.getNavbarComponent().navigateToLogin();
+  await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
+  await homePage.getNavbarComponent().navigateToLogin();
 
   // nhập thông tin đăng nhập
   await loginPage.enterAccount(account);
@@ -25,8 +25,8 @@ test("Login test - Invalid Account", async ({ page, homePage, loginPage }) => {
   const account = "invalidaccount123";
   const password = "Daibangvip123@";
 
-  await page.goto("https://demo2.cybersoft.edu.vn/");
-  homePage.getNavbarComponent().navigateToLogin();
+  await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
+  await homePage.getNavbarComponent().navigateToLogin();
 
   await loginPage.enterAccount('invalidaccount123');
   await loginPage.enterPassword(password);
@@ -42,8 +42,8 @@ test("Login test - Invalid Password", async ({ page, homePage, loginPage }) => {
   const account = "vietanh1122";
   const password = "WrongPassword123@";
 
-  await page.goto("https://demo2.cybersoft.edu.vn/");
-  homePage.getNavbarComponent().navigateToLogin();
+  await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
+  await homePage.getNavbarComponent().navigateToLogin();
 
   await loginPage.enterAccount(account);
   await loginPage.enterPassword(password);
@@ -58,8 +58,8 @@ test("Login test - Empty Account", async ({ page, homePage, loginPage }) => {
   const account = "";
   const password = "Daibangvip123@";
 
-  await page.goto("https://demo2.cybersoft.edu.vn");
-  homePage.getNavbarComponent().navigateToLogin();
+  await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
+  await homePage.getNavbarComponent().navigateToLogin();
 
   await loginPage.enterAccount(account);
   await loginPage.enterPassword(password);
@@ -74,8 +74,8 @@ test("Login test - Empty Password", async ({ page, homePage, loginPage }) => {
   const account = "vietanh1122";
   const password = "";
 
-  await page.goto("https://demo2.cybersoft.edu.vn");
-  homePage.getNavbarComponent().navigateToLogin();
+  await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
+  await homePage.getNavbarComponent().navigateToLogin();
 
   await loginPage.enterAccount(account);
   await loginPage.enterPassword(password);
@@ -87,8 +87,8 @@ test("Login test - Empty Password", async ({ page, homePage, loginPage }) => {
 
 // 6. Empty Both Fields - Để trống cả hai trường
 test("Login test - Empty Both Fields", async ({ page, homePage, loginPage }) => {
-  await page.goto("https://demo2.cybersoft.edu.vn");
-  homePage.getNavbarComponent().navigateToLogin();
+  await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
+  await homePage.getNavbarComponent().navigateToLogin();
 
   await loginPage.clickLogin();
 
@@ -101,8 +101,8 @@ test("Login test - Account Too Short", async ({ page, homePage, loginPage }) => 
   const account = "abc";
   const password = "Daibangvip123@";
 
-  await page.goto("https://demo2.cybersoft.edu.vn");
-  homePage.getNavbarComponent().navigateToLogin();
+  await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
+  await homePage.getNavbarComponent().navigateToLogin();
 
   await loginPage.enterAccount(account);
   await loginPage.enterPassword(password);
@@ -117,8 +117,8 @@ test("Login test - Password Too Short", async ({ page, homePage, loginPage }) =>
   const account = "vietanh1122";
   const password = "123";
 
-  await page.goto("https://demo2.cybersoft.edu.vn");
-  homePage.getNavbarComponent().navigateToLogin();
+  await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
+  await homePage.getNavbarComponent().navigateToLogin();
 
   await loginPage.enterAccount(account);
   await loginPage.enterPassword(password);
@@ -133,8 +133,8 @@ test("Login test - Invalid Character in Account", async ({ page, homePage, login
   const account = "vietanh@@##";
   const password = "Daibangvip123@";
 
-  await page.goto("https://demo2.cybersoft.edu.vn");
-  homePage.getNavbarComponent().navigateToLogin();
+  await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
+  await homePage.getNavbarComponent().navigateToLogin();
 
   await loginPage.enterAccount(account);
   await loginPage.enterPassword(password);

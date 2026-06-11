@@ -6,7 +6,7 @@ test("Register test", async ({ page, homePage, registerPage }) => {
   const password = "Daibangvip123@"; // password
   const fullName = "Huỳnh Lê Việt Anh"; // full name
 
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
 
     // Click "Đăng ký" button
     homePage.getNavbarComponent().navigateToLogin();
@@ -43,7 +43,7 @@ test("Register fails when account field more 16 characters", async ({ page, regi
   const account = crypto.randomUUID().substring(0, 15);
   const phone = "0345678901";
   
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
 
   await homePage.getNavbarComponent().navigateToLogin();
 
@@ -69,7 +69,7 @@ test("Register fails when account is to short", async ({ page, registerPage, hom
   const account = crypto.randomUUID().substring(0, 15);
   const phone = "0345678901";
   
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
 
   await homePage.getNavbarComponent().navigateToLogin();
 
@@ -99,7 +99,7 @@ test("Register fails with empty account", async ({ page, registerPage, homePage 
   const account = crypto.randomUUID().substring(0, 15);
   const phone = "0345678901";
   
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
 
   await homePage.getNavbarComponent().navigateToLogin();
 
@@ -129,7 +129,7 @@ test("Register with special characters in account", async ({ page, registerPage,
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
   
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
 
   await homePage.getNavbarComponent().navigateToLogin();
 
@@ -158,7 +158,7 @@ test("Register with account contains only numbers", async ({ page, registerPage,
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
   
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
 
   await homePage.getNavbarComponent().navigateToLogin();
 
@@ -186,7 +186,7 @@ test("Register with existing account", async ({ page, registerPage, homePage }) 
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
   
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
 
   await homePage.getNavbarComponent().navigateToLogin();
 
@@ -215,7 +215,7 @@ test("Register with account contains whitespace", async ({ page, registerPage, h
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
   
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
 
   await homePage.getNavbarComponent().navigateToLogin();
 
@@ -244,7 +244,7 @@ test("Register with full name more than 50 characters", async ({ page, registerP
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
   
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
 
   await homePage.getNavbarComponent().navigateToLogin();
 
@@ -273,7 +273,7 @@ test("Register with full name contains only numbers", async ({ page, registerPag
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
   
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
 
   await homePage.getNavbarComponent().navigateToLogin();
 
@@ -300,25 +300,17 @@ test("Register with full name contains only special characters", async ({ page, 
   const password = "Daibangvip123@";
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
-  const phone = "0345678901";
-  
-  await page.goto("https://demo2.cybersoft.edu.vn");
-
+  const phone = "0345678901";  
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
-
   await registerPage.navigateToRegisterForm();
-
   await registerPage.enterAccount(account);
-
   await registerPage.enterFullName(fullName);
   await registerPage.enterPassword(password);
-  
   await registerPage.enterEmail(email);
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP03');
-  
   await registerPage.clickRegister();
-
   const lblaccount = await page.getByText('Chỉ nhập kí tự chữ');
   await expect(lblaccount).toBeVisible();
 });
@@ -330,24 +322,16 @@ test("Register with full name contains only whitespace", async ({ page, register
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
-  
-  await page.goto("https://demo2.cybersoft.edu.vn");
-
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
-
   await registerPage.navigateToRegisterForm();
-
   await registerPage.enterAccount(account);
-
   await registerPage.enterFullName(fullName);
-  await registerPage.enterPassword(password);
-  
+  await registerPage.enterPassword(password); 
   await registerPage.enterEmail(email);
   await registerPage.enterPhone(phone);
-  await registerPage.selectGroupForm('GP03');
-  
+  await registerPage.selectGroupForm('GP03'); 
   await registerPage.clickRegister();
-
   const lblaccount = await page.getByText('Đăng kí thành công');
   await expect(lblaccount).toBeVisible();
 });
@@ -359,7 +343,7 @@ test("Register with empty full name", async ({ page, registerPage, homePage }) =
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -380,7 +364,7 @@ test("Register with full name contains leading and trailing whitespace", async (
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -401,7 +385,7 @@ test("Register with password contains only 1 character", async ({ page, register
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -422,7 +406,7 @@ test("Register with password more than 50 characters", async ({ page, registerPa
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -443,7 +427,7 @@ test("Register with password does not meet requirements (no uppercase letters)",
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901"; 
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -464,7 +448,7 @@ test("Register with password does not meet requirements (contains uppercase lett
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901"; 
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -485,7 +469,7 @@ test("Register with password does not meet requirements (contains uppercase lett
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901"; 
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -506,7 +490,7 @@ test("Register with password does not meet requirements (contains uppercase lett
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901"; 
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -526,7 +510,7 @@ test("Register with empty password", async ({ page, registerPage, homePage }) =>
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";  
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -546,7 +530,7 @@ test("Register with password contains only whitespace", async ({ page, registerP
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901"; 
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -566,7 +550,7 @@ test("Register with password contains only special characters", async ({ page, r
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901"; 
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -586,7 +570,7 @@ test("Register with existing email", async ({ page, registerPage, homePage }) =>
   const account = crypto.randomUUID().substring(0, 15);
   const email = "mquoc41@gmail.com"; // existing email
   const phone = "0345678901";
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -606,7 +590,7 @@ test("Register with invalid email", async ({ page, registerPage, homePage }) => 
   const account = crypto.randomUUID().substring(0, 15);
   const email = "invalidemail"; // invalid email
   const phone = "0345678901";
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -627,7 +611,7 @@ test("Register with empty email", async ({ page, registerPage, homePage }) => {
   const email = ""; // empty email
   const phone = "0345678901";
   
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
 
   await homePage.getNavbarComponent().navigateToLogin();
 
@@ -656,7 +640,7 @@ test("Register with invalid phone number", async ({ page, registerPage, homePage
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "invalidphone"; // invalid phone number
   
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
 
   await homePage.getNavbarComponent().navigateToLogin();
 
@@ -681,7 +665,7 @@ test("Register with phone number less than 10 digits", async ({ page, registerPa
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "034567890"; // phone number with less than 10 digits
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -702,7 +686,7 @@ test("Register with phone number contains non-numeric characters", async ({ page
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "034567890a"; // phone number contains non-numeric characters 
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -723,7 +707,7 @@ test("Register with phone number more than 10 digits", async ({ page, registerPa
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "03456789012"; // phone number with more than 10 digits
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -744,7 +728,7 @@ test("Register with empty phone number", async ({ page, registerPage, homePage }
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = ""; // empty phone number
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -765,7 +749,7 @@ test("Register with phone number contains only whitespace", async ({ page, regis
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "     "; // phone number with only whitespace
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -785,7 +769,7 @@ test("Register with phone number contains only special characters", async ({ pag
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "!@#$%^&*()";
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -806,7 +790,7 @@ test("Register with group code GP01", async ({ page, registerPage, homePage }) =
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -826,7 +810,7 @@ test("Register with group code GP02", async ({ page, registerPage, homePage }) =
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -846,7 +830,7 @@ test("Register with group code GP03", async ({ page, registerPage, homePage }) =
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -866,7 +850,7 @@ test("Register with group code GP04", async ({ page, registerPage, homePage }) =
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -886,7 +870,7 @@ test("Register with group code GP05", async ({ page, registerPage, homePage }) =
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -906,7 +890,7 @@ test("Register with group code GP06", async ({ page, registerPage, homePage }) =
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -926,7 +910,7 @@ test("Register with group code GP07", async ({ page, registerPage, homePage }) =
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -946,7 +930,7 @@ test("Register with group code GP08", async ({ page, registerPage, homePage }) =
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -966,7 +950,7 @@ test("Register with group code GP09", async ({ page, registerPage, homePage }) =
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -986,7 +970,7 @@ test("Register with group code GP10", async ({ page, registerPage, homePage }) =
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901";
-  await page.goto("https://demo2.cybersoft.edu.vn");
+  await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
