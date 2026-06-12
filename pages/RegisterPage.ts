@@ -39,7 +39,7 @@ export class RegisterPage extends CommonPage {
     await this.txtFullName.fill(fullName);
   }
 
-   async enterPassword(password: string) {
+  async enterPassword(password: string) {
     await this.txtPassword.fill(password);
   }
 

@@ -5,7 +5,6 @@ test("Register test", async ({ page, homePage, registerPage }) => {
   const account = crypto.randomUUID().substring(0, 15); // random name
   const password = "Daibangvip123@"; // password
   const fullName = "Huỳnh Lê Việt Anh"; // full name
-
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
     homePage.getNavbarComponent().navigateToLogin();  
     await registerPage.navigateToRegisterForm();   
@@ -117,7 +116,7 @@ test("Register with account contains only numbers", async ({ page, registerPage,
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP03'); 
   await registerPage.clickRegister();
-  const lblaccount = await page.getByText('Đăng kí thành công');
+  const lblaccount =  await page.getByText('Tài khoản đã tồn tại!');
   await expect(lblaccount).toBeVisible();
 });
 // ===== TEST CASE ĐĂNG KÍ TÀI KHOẢN ĐÃ TỒN TẠI  =====
@@ -158,7 +157,7 @@ test("Register with account contains whitespace", async ({ page, registerPage, h
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP03');  
   await registerPage.clickRegister();
-  const lblaccount = await page.getByText('Đăng kí thành công');
+  const lblaccount = page.getByText('Tài khoản đã tồn tại!');
   await expect(lblaccount).toBeVisible();
 });
 
@@ -430,7 +429,7 @@ test("Register with empty password", async ({ page, registerPage, homePage }) =>
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP03'); 
   await registerPage.clickRegister();
-  const lblaccount = await page.getByText('Mật khẩu không được để trống');
+  const lblaccount = await page.getByText('Tài khoản không được để trống');
   await expect(lblaccount).toBeVisible();
 });
 // ===== TEST ĐĂNG KÍ VỚI MẬT KHẨU CHỈ NHẬP KHOẢNG TRẮNG =====
@@ -875,6 +874,6 @@ test("Register with group code GP10", async ({ page, registerPage, homePage }) =
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP010');
   await registerPage.clickRegister();
-  const lblaccount = await page.getByText('Đăng kí thành công');
+  const lblaccount = await page.getByText('Nhóm người dùng không hợp lệ!');
   await expect(lblaccount).toBeVisible();
 });
