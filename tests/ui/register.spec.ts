@@ -877,3 +877,4 @@ test("Register with group code GP10", async ({ page, registerPage, homePage }) =
   const lblaccount = await page.getByText('Nhóm người dùng không hợp lệ!');
   await expect(lblaccount).toBeVisible();
 });
+test
