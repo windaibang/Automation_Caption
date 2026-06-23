@@ -5,6 +5,7 @@ import { HomePage } from "../pages/HomePage.ts";
 import { RegisterPage } from "../pages/RegisterPage.ts";
 import { LoginPage } from "../pages/LoginPage.ts";
 import { BlogPage } from "../pages/BlogPage.ts";
+
 type PageFixture = {
   homePage: HomePage;
   registerPage: RegisterPage;
@@ -33,6 +34,7 @@ export const test = base.extend<PageFixture>({
     const blogPage = new BlogPage(page);
     await use(blogPage);
   },
+  
 });
 
 export { expect } from "@playwright/test";

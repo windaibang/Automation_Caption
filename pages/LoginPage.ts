@@ -11,8 +11,7 @@ export class LoginPage extends CommonPage {
   constructor(page: Page) {
     super(page);
     this.btnLoginForm = page.locator("#signIn");
-    this.txtAccount = page
-      .locator("form")
+    this.txtAccount = page.locator("form")
       .filter({ hasText: "Đăng nhậphoặc sử dụng tài kho" })
       .getByPlaceholder("Tài khoản");
     this.txtPassword = page

@@ -28,7 +28,7 @@ test("Login test - Invalid Account", async ({ page, homePage, loginPage }) => {
   await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
 
-  await loginPage.enterAccount('invalidaccount123');
+  await loginPage.enterAccount(account);
   await loginPage.enterPassword(password);
   await loginPage.clickLogin();
   
