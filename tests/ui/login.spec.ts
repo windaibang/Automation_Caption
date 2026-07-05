@@ -7,14 +7,9 @@ test("Login test", async ({ page, homePage, loginPage }) => {
 
   await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
-
-  // nhập thông tin đăng nhập
   await loginPage.enterAccount(account);
   await loginPage.enterPassword(password);
-
-  // Click "Đăng nhập" button
   await loginPage.clickLogin();
-
   const avatar = page.getByRole('link').filter({ hasText: /^$/ }).nth(1);
   await expect(avatar).toBeVisible();
 });
@@ -24,7 +19,6 @@ test("Login test", async ({ page, homePage, loginPage }) => {
 test("Login test - Invalid Account", async ({ page, homePage, loginPage }) => {
   const account = "invalidaccount123";
   const password = "Daibangvip123@";
-
   await page.goto("https://demo2.cybersoft.edu.vn/", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
 

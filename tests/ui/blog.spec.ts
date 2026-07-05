@@ -41,7 +41,7 @@ test("Navigate to Blog and click on FE category", async ({
   });
   await homePage.getNavbarComponent().clickBlogBtn();
   await blogPage.clickFE();
-  const Blogtitle = await page.getByRole("heading", { name: "Blog" });
+  const Blogtitle = await page.getByRole("heading", { name: "FE" });
   await expect(Blogtitle).toBeVisible();
 });
 
@@ -56,7 +56,7 @@ test("Navigate to Blog and click on UI category", async ({
   });
   await homePage.getNavbarComponent().clickBlogBtn();
   await blogPage.clickUI();
-  const Blogtitle = await page.getByRole("heading", { name: "Blog" });
+  const Blogtitle = await page.getByRole("heading", { name: "UI" });
   await expect(Blogtitle).toBeVisible();
 });
 
@@ -71,7 +71,7 @@ test("Navigate to Blog and click on BE category", async ({
   });
   await homePage.getNavbarComponent().clickBlogBtn();
   await blogPage.clickBE();
-  const Blogtitle = await page.getByRole("heading", { name: "Blog" });
+  const Blogtitle = await page.getByRole("heading", { name: "BE" });
   await expect(Blogtitle).toBeVisible();
 });
 
@@ -86,7 +86,7 @@ test("Navigate to Blog and click on Library category", async ({
   });
   await homePage.getNavbarComponent().clickBlogBtn();
   await blogPage.clickLibrary();
-  const Blogtitle = await page.getByRole("heading", { name: "Blog" });
+  const Blogtitle = await page.getByRole("heading", { name: "Library" });
   await expect(Blogtitle).toBeVisible();
 });
 
@@ -101,7 +101,7 @@ test("Navigate to Blog and click on Share category", async ({
   });
   await homePage.getNavbarComponent().clickBlogBtn();
   await blogPage.clickShare();
-  const Blogtitle = await page.getByRole("heading", { name: "Blog" });
+  const Blogtitle = await page.getByRole("heading", { name: "Share" });
   await expect(Blogtitle).toBeVisible();
 });
 
@@ -116,7 +116,7 @@ test("Navigate to Blog and click on IT category", async ({
   });
   await homePage.getNavbarComponent().clickBlogBtn();
   await blogPage.clickIT();
-  const Blogtitle = await page.getByRole("heading", { name: "Blog" });
+  const Blogtitle = await page.getByRole("heading", { name: "IT" });
   await expect(Blogtitle).toBeVisible();
 });
 
@@ -131,24 +131,18 @@ test("Navigate to Blog and click on Other category", async ({
   });
   await homePage.getNavbarComponent().clickBlogBtn();
   await blogPage.clickOther();
-  const Blogtitle = await page.getByRole("heading", { name: "Blog" });
+  const Blogtitle = await page.getByRole("heading", { name: "Other" });
   await expect(Blogtitle).toBeVisible();
 });
 
 //10 Navigate to Blog with account curently registerd - Điều hướng đến trang Blog với tài khoản vừa đăng ký
 test("Navigate to Blog with account curently registerd", async ({
-  page,
-  homePage,
-  registerPage,
-  blogPage,
-  loginPage,
-}) => {
+  page,homePage,registerPage,loginPage,}) => {
   const account = crypto.randomUUID().substring(0, 15); // random name
   const password = "Daibangvip123@"; // password
   const fullName = "Huỳnh Lê Việt Anh"; // full name
-  await page.goto("https://demo2.cybersoft.edu.vn", {
-    waitUntil: "domcontentloaded",
-  });
+  await page.goto("https://demo2.cybersoft.edu.vn", {waitUntil: "domcontentloaded",
+});
   homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
   await registerPage.enterAccount(account);
@@ -179,7 +173,7 @@ test("Navigate to look more time and driving force ", async ({
   // 23 test: Đăng nhập, vào Blog, mở nhiều bài 'Xem thêm' lần lượt và quay lại
   await homePage.getNavbarComponent().clickBlogBtn();
   await blogPage.clickButtonTime();
-  const Blogtitle = await page.getByRole("heading", { name: "Blog" });
+  const Blogtitle = await page.getByRole("heading", { name: "Time" });
   await expect(Blogtitle).toBeVisible();
 });
 //12 test khả năng truy cập vào mục TailWind css và seting cơ bản
@@ -193,7 +187,7 @@ test("Navigate to ability click to TailWind css ", async ({
   });
   await homePage.getNavbarComponent().clickBlogBtn();
   await blogPage.clickButtonTailWind();
-  const Blogtitle = await page.getByRole("heading", { name: "Blog" });
+  const Blogtitle = await page.getByRole("heading", { name: "TailWind CSS" });
   await expect(Blogtitle).toBeVisible();
 });
 //13 test khả năng truy cập vào cấu trúc cơ bản HTML
@@ -208,7 +202,7 @@ test("Navigate to ability click to HTML ", async ({
   });
   await homePage.getNavbarComponent().clickBlogBtn();
   await blogPage.clickButtonHTML();
-  const Blogtitle = await page.getByRole("heading", { name: "Blog" });
+  const Blogtitle = await page.getByRole("heading", { name: "HTML" });
   await expect(Blogtitle).toBeVisible();
 });
 //14 test khả năng truy cập vào Material
@@ -223,7 +217,7 @@ test("Navigate to ability click to Material ", async ({
   });
   await homePage.getNavbarComponent().clickBlogBtn();
   await blogPage.clickButtonMaterial();
-  const Blogtitle = await page.getByRole("heading", { name: "Blog" });
+  const Blogtitle = await page.getByRole("heading", { name: "Material" });
   await expect(Blogtitle).toBeVisible();
 });
 //15 test khả năng truy cập vào component
@@ -237,7 +231,7 @@ test("Navigate to ability click to component ", async ({
   });
   await homePage.getNavbarComponent().clickBlogBtn();
   await blogPage.clickButtonComponent();
-  const Blogtitle = await page.getByRole("heading", { name: "Blog" });
+  const Blogtitle = await page.getByRole("heading", { name: "Component" });
   await expect(Blogtitle).toBeVisible();
 });
 //16 test khả năng truy cập vào Material UI
@@ -251,7 +245,7 @@ test("Navigate to ability click to MaterialUI ", async ({
   });
   await homePage.getNavbarComponent().clickBlogBtn();
   await blogPage.clickButtonMaterialUI();
-  const Blogtitle = await page.getByRole("heading", { name: "Blog" });
+  const Blogtitle = await page.getByRole("heading", { name: "Material UI" });
   await expect(Blogtitle).toBeVisible();
 });
 // 17 test khả năng truy cập vào Javascript
@@ -265,7 +259,7 @@ test("Navigate to ability click to Javascript ", async ({
   });
   await homePage.getNavbarComponent().clickBlogBtn();
   await blogPage.clickButtonJavaScipt();
-  const Blogtitle = await page.getByRole("heading", { name: "Blog" });
+  const Blogtitle = await page.getByRole("heading", { name: "Javascript" });
   await expect(Blogtitle).toBeVisible();
 });
 // 18 test khả năng truy cập vào trang TypeScript
@@ -279,7 +273,7 @@ test("Navigate to ability click to TypeScipt ", async ({
   });
   await homePage.getNavbarComponent().clickBlogBtn();
   await blogPage.clickButtonTypeScript();
-  const Blogtitle = await page.getByRole("heading", { name: "Blog" });
+  const Blogtitle = await page.getByRole("heading", { name: "TypeScript" });
   await expect(Blogtitle).toBeVisible();
 });
 
@@ -354,7 +348,7 @@ test("Navigate to ability click to FE with login accoung ", async ({
   await loginPage.clickLogin();
   await homePage.getNavbarComponent().clickBlogBtn();
   await blogPage.clickFE();
-  const Blogtitle = await page.getByRole("heading", { name: "Blog" });
+  const Blogtitle = await page.getByRole("heading", { name: "FE" });
   await expect(Blogtitle).toBeVisible();
 });
 // 22. Click all blog categories sequentially
@@ -367,25 +361,32 @@ test("Navigate to Blog and click all categories sequentially", async ({
   await homePage.getNavbarComponent().clickBlogBtn();
 
   await blogPage.clickFE();
-  await expect(page.getByRole("heading", { name: "Blog" })).toBeVisible();
+  const FEtitle = await page.getByRole("heading", { name: "FE" });
+  await expect(FEtitle).toBeVisible();
 
   await blogPage.clickUI();
-  await expect(page.getByRole("heading", { name: "Blog" })).toBeVisible();
+  const UItitle = await page.getByRole("heading", { name: "UI" });
+  await expect(UItitle).toBeVisible();
 
   await blogPage.clickBE();
-  await expect(page.getByRole("heading", { name: "Blog" })).toBeVisible();
+  const BEtitle = await page.getByRole("heading", { name: "BE" });
+  await expect(BEtitle).toBeVisible();
 
   await blogPage.clickLibrary();
-  await expect(page.getByRole("heading", { name: "Blog" })).toBeVisible();
+  const Librarytitle = await page.getByRole("heading", { name: "Library" });
+  await expect(Librarytitle).toBeVisible();
 
   await blogPage.clickShare();
-  await expect(page.getByRole("heading", { name: "Blog" })).toBeVisible();
+  const Sharetitle = await page.getByRole("heading", { name: "Share" });
+  await expect(Sharetitle).toBeVisible();
 
   await blogPage.clickIT();
-  await expect(page.getByRole("heading", { name: "Blog" })).toBeVisible();
+  const ITtitle = await page.getByRole("heading", { name: "IT" });
+  await expect(ITtitle).toBeVisible();
 
   await blogPage.clickOther();
-  await expect(page.getByRole("heading", { name: "Blog" })).toBeVisible();
+  const Othertitle = await page.getByRole("heading", { name: "Other" });
+  await expect(Othertitle).toBeVisible();
 });
 
 // 23. Click multiple read more buttons in a row

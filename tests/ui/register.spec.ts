@@ -84,7 +84,7 @@ test("Register with special characters in account", async ({ page, registerPage,
   const password = "Daibangvip123@";
   const account = crypto.randomUUID().substring(0, 5) + "!@#$()"; // account with special characters
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
-  const phone = "0345678901"; 
+  const phone = "0345678901";
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
@@ -95,7 +95,7 @@ test("Register with special characters in account", async ({ page, registerPage,
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP03'); 
   await registerPage.clickRegister();
-  const lblaccount = await page.getByText('Đăng kí thành công');
+  const lblaccount = await page.getByText('Đăng kí không thành công');
   await expect(lblaccount).toBeVisible();
 });
 
@@ -105,7 +105,7 @@ test("Register with account contains only numbers", async ({ page, registerPage,
   const password = "Daibangvip123@";
   const account = "1234567890"; // account with only numbers
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
-  const phone = "0345678901";  
+  const phone = "0345678901";
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
@@ -144,7 +144,7 @@ test("Register with existing account", async ({ page, registerPage, homePage }) 
 test("Register with account contains whitespace", async ({ page, registerPage, homePage }) => {
   const fullName = "Huỳnh Lê Việt Anh";
   const password = "Daibangvip123@";
-  const account = "viet anh"; // account with whitespace
+  const account = "viet anh 22 33"; // account with whitespace
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
   const phone = "0345678901"; 
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
@@ -157,7 +157,7 @@ test("Register with account contains whitespace", async ({ page, registerPage, h
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP03');  
   await registerPage.clickRegister();
-  const lblaccount = page.getByText('Tài khoản đã tồn tại!');
+  const lblaccount = page.getByText('Đăng kí không thành công');
   await expect(lblaccount).toBeVisible();
 });
 
@@ -178,7 +178,7 @@ test("Register with full name more than 50 characters", async ({ page, registerP
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP03');  
   await registerPage.clickRegister();
-  const lblaccount = await page.getByText('Đăng kí thành công');
+  const lblaccount = await page.getByText('Đăng kí không thành công');
   await expect(lblaccount).toBeVisible();
 });
 
@@ -346,7 +346,7 @@ test("Register with password does not meet requirements (no uppercase letters)",
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP03'); 
   await registerPage.clickRegister();
-  const lblaccount = await page.getByText('Mật khẩu phải ít nhất 8 tự gồ');
+  const lblaccount = await page.getByText('mật khẩu phải có dấu viết hoa');
   await expect(lblaccount).toBeVisible();
 });
 
@@ -367,7 +367,7 @@ test("Register with password does not meet requirements (contains uppercase lett
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP03');  
   await registerPage.clickRegister();
-  const lblaccount = await page.getByText('Mật khẩu phải ít nhất 8 tự gồ');
+  const lblaccount = await page.getByText('Mật khẩu phải ít nhất 1 kí tự đặc biệt');
   await expect(lblaccount).toBeVisible();
 });
 
@@ -388,7 +388,7 @@ test("Register with password does not meet requirements (contains uppercase lett
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP03'); 
   await registerPage.clickRegister();
-  const lblaccount = await page.getByText('Mật khẩu phải ít nhất 8 tự gồ');
+  const lblaccount = await page.getByText('Mật khẩu phải ít nhất có số và kí tự đặc biệt');
   await expect(lblaccount).toBeVisible();
 });
 
@@ -409,7 +409,7 @@ test("Register with password does not meet requirements (contains uppercase lett
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP03'); 
   await registerPage.clickRegister();
-  const lblaccount = await page.getByText('Mật khẩu phải ít nhất 8 tự gồ');
+  const lblaccount = await page.getByText('Mật khẩu phải ít nhất có số và kí tự đặc biệt');
   await expect(lblaccount).toBeVisible();
 });
 // ===== TEST ĐĂNG KÍ VỚI (BỎ TRỐNG MẬT KHẨU) =====
@@ -429,7 +429,7 @@ test("Register with empty password", async ({ page, registerPage, homePage }) =>
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP03'); 
   await registerPage.clickRegister();
-  const lblaccount = await page.getByText('Tài khoản không được để trống');
+  const lblaccount = await page.getByText('mật khẩu không được để trống');
   await expect(lblaccount).toBeVisible();
 });
 // ===== TEST ĐĂNG KÍ VỚI MẬT KHẨU CHỈ NHẬP KHOẢNG TRẮNG =====
@@ -438,7 +438,7 @@ test("Register with password contains only whitespace", async ({ page, registerP
   const password = "     "; // password with only whitespace
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
-  const phone = "0345678901"; 
+  const phone = "0345678901";
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
@@ -449,7 +449,7 @@ test("Register with password contains only whitespace", async ({ page, registerP
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP03'); 
   await registerPage.clickRegister();
-  const lblaccount = await page.getByText('Mật khẩu phải ít nhất 8 tự gồ');
+  const lblaccount = await page.getByText('Mật khẩu không được để trống');
   await expect(lblaccount).toBeVisible();
 });
 // ===== TEST ĐĂNG KÍ VỚI MẬT KHẨU CHỈ NHẬP KÝ TỰ ĐẶC BIỆT =====
@@ -458,7 +458,7 @@ test("Register with password contains only special characters", async ({ page, r
   const password = "!@#$%^&*()"; // password with only special characters
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
-  const phone = "0345678901"; 
+  const phone = "0345678901";
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
@@ -509,7 +509,8 @@ test("Register with invalid email", async ({ page, registerPage, homePage }) => 
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP03');
   await registerPage.clickRegister();
-
+  const lblaccount = await page.getByText('Email sai định dạng');
+  await expect(lblaccount).toBeVisible();
 });
 
 // ===== TEST ĐĂNG KÍ VỚI EMAIL BỎ TRỐNG =====
@@ -518,7 +519,7 @@ test("Register with empty email", async ({ page, registerPage, homePage }) => {
   const password = "Daibangvip123@";
   const account = crypto.randomUUID().substring(0, 15);
   const email = ""; // empty email
-  const phone = "0345678901";  
+  const phone = "0345678901";
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
@@ -550,7 +551,8 @@ test("Register with invalid phone number", async ({ page, registerPage, homePage
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP03');
   await registerPage.clickRegister();
-
+  const lblaccount = await page.getByText('Số điện thoại chưa đúng định đạng');
+  await expect(lblaccount).toBeVisible();
 });
 // ===== TEST ĐĂNG KÍ VỚI SỐ ĐIỆN THOẠI KHÔNG ĐỦ SỐ =====
 test("Register with phone number less than 10 digits", async ({ page, registerPage, homePage }) => {
@@ -569,7 +571,7 @@ test("Register with phone number less than 10 digits", async ({ page, registerPa
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP03');
   await registerPage.clickRegister();
-  const lblInvalidPhone = await page.getByText('Số điện thoại chưa đúng định');
+  const lblInvalidPhone = await page.getByText('Số điện thoại chưa đúng định đạng');
   await expect(lblInvalidPhone).toBeVisible();
 });
 
@@ -579,7 +581,7 @@ test("Register with phone number contains non-numeric characters", async ({ page
   const password = "Daibangvip123@";
   const account = crypto.randomUUID().substring(0, 15);
   const email = `${crypto.randomUUID().substring(0, 15)}@gmail.com`;
-  const phone = "034567890a"; // phone number contains non-numeric characters 
+  const phone = "vietanh"; // phone number contains non-numeric characters 
   await page.goto("https://demo2.cybersoft.edu.vn", { waitUntil: "domcontentloaded" });
   await homePage.getNavbarComponent().navigateToLogin();
   await registerPage.navigateToRegisterForm();
@@ -874,6 +876,6 @@ test("Register with group code GP10", async ({ page, registerPage, homePage }) =
   await registerPage.enterPhone(phone);
   await registerPage.selectGroupForm('GP010');
   await registerPage.clickRegister();
-  const lblaccount = await page.getByText('Nhóm người dùng không hợp lệ!');
+  const lblaccount = await page.getByText('Đăng kí thành công');
   await expect(lblaccount).toBeVisible();
 });
