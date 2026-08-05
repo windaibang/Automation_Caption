@@ -5,9 +5,7 @@ import {
   FOOTER_URL,
 } from "../../constants/FooterConstants.ts";
 
-test.beforeEach(async ({ page }) => {
-  await page.goto(FOOTER_URL, { waitUntil: "domcontentloaded" });
-});
+test.beforeEach(async ({ page }) => {await page.goto(FOOTER_URL, { waitUntil: "domcontentloaded" });});
 
 async function submitFooterConsultingForm(
   homePage: HomePage,

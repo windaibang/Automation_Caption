@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { BasePage } from "./BasePage.ts";
+import { BasePage } from "./basepage.ts";
 import { NavbarComponent } from "./components/NavbarComponent.ts";
 import { FooterComponent } from "./components/FooterComponent.ts";
 
@@ -17,8 +17,7 @@ export class CommonPage extends BasePage {
   getNavbarComponent(): NavbarComponent {
     return this.navbarComponent;
   }
-  getFooterComponent(): FooterComponent{
+  getFooterComponent(): FooterComponent {
     return this.footerComponent;
   }
-
 }

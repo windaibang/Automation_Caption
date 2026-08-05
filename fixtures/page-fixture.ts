@@ -5,7 +5,7 @@ import { test as base } from "@playwright/test";
 import { HomePage } from "../pages/HomePage.ts";
 import { RegisterPage } from "../pages/REGISTERPAGE/RegisterPage.ts";
 import { LoginPage } from "../pages/LoginPage.ts";
-import { BlogPage } from "../pages/BlogPage.ts";
+import { BlogPage } from "../pages/blogpage.ts";
 
 type PageFixture = {
   homePage: HomePage;
@@ -14,16 +14,10 @@ type PageFixture = {
   blogPage: BlogPage;
 };
 
-async function attachFinalScreenshot(page: Page, testInfo: TestInfo) {
-  const attachmentName = `${testInfo.title.replace(/\s+/g, "-").toLowerCase()}-final-state`;
-
-  await testInfo.attach(attachmentName, {
-    body: await page.screenshot({
-      animations: "disabled",
-      fullPage: true,
-    }),
-    contentType: "image/png",
-  });
+async function attachFinalScreenshot(page: Page,testInfo: TestInfo) {
+if(testInfo.status !== testInfo.expectedStatus){
+const attachmentName =`${testInfo.title.replace(/\s+/g,"-").toLowerCase()}-failed`;
+await testInfo.attach(attachmentName,{body: await page.screenshot({animations:"disabled",fullPage:true}),contentType:"image/png"});}
 }
 
 export const test = base.extend<PageFixture>({

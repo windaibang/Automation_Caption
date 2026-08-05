@@ -1,11 +1,7 @@
 import { test, expect } from "../../fixtures/page-fixture.ts";
 import type { Page } from "@playwright/test";
 import type { HomePage } from "../../pages/HomePage.ts";
-import {
-  createRegisterData,
-  submitRegisterWithGroup,
-} from "../../pages/REGISTERPAGE/RegisterPage.ts";
-
+import {createRegisterData,submitRegisterWithGroup,} from "../../pages/REGISTERPAGE/RegisterPage.ts";
 async function openRegisterScreen(page: Page, homePage: HomePage) {await page.goto("https://demo2.cybersoft.edu.vn", {waitUntil: "domcontentloaded",});
   await homePage.getNavbarComponent().navigateToLogin();
 }
@@ -50,13 +46,9 @@ test("TC13-Register fails with empty account", async ({
 });
 
 // ===== TEST CASE LỖI HỌ TÊN =====
-test("TC14-Register with full name more than 50 characters", async ({
-  page,
-  registerPage,
-}) => {
-  const data = createRegisterData();
-
-  await submitRegisterWithGroup(
+test("TC14-Register with full name more than 50 characters", async ({page,registerPage,}) => {
+const data = createRegisterData();
+await submitRegisterWithGroup(
     registerPage,
     {
       ...data,
@@ -287,21 +279,9 @@ test("TC29-Register with empty phone number", async ({
 });
 
 // ===== TEST ĐĂNG KÍ VỚI MÃ NHÓM =====
-for (const group of [
-  "GP01",
-  "GP02",
-  "GP03",
-  "GP04",
-  "GP05",
-  "GP06",
-  "GP07",
-  "GP08",
-  "GP09",
-  "GP010",
-]) {
-  test(`TC${group === "GP01" ? "30" : group === "GP02" ? "31" : group === "GP03" ? "32" : group === "GP04" ? "33" : group === "GP05" ? "34" : group === "GP06" ? "35" : group === "GP07" ? "36" : group === "GP08" ? "37" : group === "GP09" ? "38" : "39"}-Register with group code ${group}`, async ({
-    page,
-    registerPage,
+for (const group of ["GP01","GP02","GP03","GP04","GP05","GP06","GP07","GP08","GP09","GP010",]) {
+  test(`TC${group === "GP01" ? "30" : group === "GP02" ? "31" : group === "GP03" ? "32" : group === "GP04" ? "33" : group === "GP05" ? "34" : group === "GP06" ? "35" : group === "GP07" ? "36" : group === "GP08" ? "37" : group === "GP09" ? "38" : "39"}-Register with group code ${group}`, async ({ page,
+registerPage,
   }) => {
     const data = createRegisterData();
 

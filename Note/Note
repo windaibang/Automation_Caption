@@ -1,0 +1,6 @@
+Lệnh: Chạy allure với Playwright
+npm install -D allure-playwright
+['allure-playwright'],
+allure generate allure-results --clean -o allure-report
+allure open allure-report
+rmdir /s /q allure-results
