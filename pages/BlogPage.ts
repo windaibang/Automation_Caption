@@ -40,21 +40,13 @@ export class BlogPage extends CommonPage {
     
 
     //phương thức: các hành động trên trang Blog
-    async clickFE() {
-        await this.hrefFE.click();
-    }
+    async clickFE() {await this.hrefFE.click();}
 
-    async clickUI() {
-        await this.hrefUI.click();
-    }
+    async clickUI() {await this.hrefUI.click();}
 
-    async clickBE() {
-        await this.hrefBE.click();
-    }
+    async clickBE() {await this.hrefBE.click();}
 
-    async clickLibrary() {
-        await this.hrefLibrary.click();
-    }
+    async clickLibrary() { await this.hrefLibrary.click();}
 
     async clickShare() {
         await this.hrefShare.click();

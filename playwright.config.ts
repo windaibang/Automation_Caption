@@ -35,11 +35,13 @@ export default defineConfig({
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
     actionTimeout: 10000, //mặc định timeout cho mỗi hành động (click, fill,...) là 10 giây (mặc định của playwright là 0 - không timeout)
-
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    trace: 'retain-on-failure',
+    
   },
-
+  
   /* Configure projects for major browsers */
   projects: [
     {

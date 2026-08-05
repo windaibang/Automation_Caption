@@ -6,9 +6,7 @@ export class BasePage {
   protected page: Page;
 
   //constructor: khai báo và khởi tạo đối tượng
-  constructor(page: Page) {
-    this.page = page;
-  }
+  constructor(page: Page) {this.page = page;}
 
   //phương thức: các hành động chung cho tất cả các trang
   async inputText(

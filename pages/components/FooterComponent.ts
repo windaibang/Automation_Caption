@@ -33,4 +33,4 @@ export class FooterComponent extends BasePage{
     await this.click(this.btnRegisterConsulting, timeOut);
   }
     
-  }
+}

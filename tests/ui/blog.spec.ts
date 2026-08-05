@@ -304,12 +304,7 @@ test("Open Blog then login and click Blog again", async ({
 });
 
 // 20 test: đăng nhập, vào Blog, click chuyên mục FE rồi click Blog lại
-test("Login then navigate to Blog, click FE category and reopen Blog", async ({
-  page,
-  homePage,
-  blogPage,
-  loginPage,
-}) => {
+test("Login then navigate to Blog, click FE category and reopen Blog", async ({page,homePage,blogPage,loginPage,}) => {
   const account = "vietanh1122";
   const password = "Daibangvip123@";
   await page.goto("https://demo2.cybersoft.edu.vn/", {

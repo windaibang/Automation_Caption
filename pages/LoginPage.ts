@@ -1,5 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 import { CommonPage } from "./CommonPage.ts";
+import { LOGIN_DEFAULTS } from "../constants/LoginConstants.ts";
 
 export class LoginPage extends CommonPage {
   //thuộc tính
@@ -40,6 +41,13 @@ export class LoginPage extends CommonPage {
 
   async login(account: string, password: string) {
     await this.navigateToLoginForm();
+    await this.enterAccount(account);
+    await this.enterPassword(password);
+    await this.clickLogin();
+  }
+
+  // Phương thức đăng nhập với thông tin mặc định
+  async loginWithDefaults(account = LOGIN_DEFAULTS.account, password = LOGIN_DEFAULTS.password) {
     await this.enterAccount(account);
     await this.enterPassword(password);
     await this.clickLogin();
